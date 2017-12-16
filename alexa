@@ -1,0 +1,125 @@
+{
+  "languageModel": {
+    "intents": [
+      {
+        "name": "Add_Expense",
+        "samples": [
+          "today I have spent {amount}",
+          "add expense {amount}",
+          "I have spent {amount}",
+          "my total expense is {amount}",
+          "I spent {amount}",
+          "I lost {amount}",
+          "please add expense {amount}",
+          "please deduct {amount} from my account"
+        ],
+        "slots": [
+          {
+            "name": "amount",
+            "type": "AMAZON.NUMBER",
+            "samples": [
+              "I have spent {amount}",
+              "I spent {amount}",
+              "I lost {amount}",
+              "{amount}"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Add_Income",
+        "samples": [
+          "today I got {amount}",
+          "I got {amount}",
+          "please add income {amount}",
+          "todays my total income is {amount}",
+          "my todays income is {amount}",
+          "please add {amount} to my account",
+          "please add {amount} to my income",
+          "add income {amount}"
+        ],
+        "slots": [
+          {
+            "name": "amount",
+            "type": "AMAZON.NUMBER",
+            "samples": [
+              "I got {amount}",
+              "{amount}",
+              "today I got {amount}",
+              "I have {amount}"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "AMAZON.CancelIntent",
+        "samples": []
+      },
+      {
+        "name": "AMAZON.HelpIntent",
+        "samples": []
+      },
+      {
+        "name": "AMAZON.StopIntent",
+        "samples": []
+      }
+    ],
+    "invocationName": "expense manager"
+  },
+  "prompts": [
+    {
+      "id": "Elicit.Intent-Add_Expense.IntentSlot-amount",
+      "variations": [
+        {
+          "type": "PlainText",
+          "value": "Please specify amount to deduct"
+        }
+      ]
+    },
+    {
+      "id": "Elicit.Intent-Add_Income.IntentSlot-amount",
+      "variations": [
+        {
+          "type": "PlainText",
+          "value": "Please specify amount to add"
+        }
+      ]
+    }
+  ],
+  "dialog": {
+    "intents": [
+      {
+        "name": "Add_Expense",
+        "confirmationRequired": false,
+        "prompts": {},
+        "slots": [
+          {
+            "name": "amount",
+            "type": "AMAZON.NUMBER",
+            "elicitationRequired": true,
+            "confirmationRequired": false,
+            "prompts": {
+              "elicitation": "Elicit.Intent-Add_Expense.IntentSlot-amount"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Add_Income",
+        "confirmationRequired": false,
+        "prompts": {},
+        "slots": [
+          {
+            "name": "amount",
+            "type": "AMAZON.NUMBER",
+            "elicitationRequired": true,
+            "confirmationRequired": false,
+            "prompts": {
+              "elicitation": "Elicit.Intent-Add_Income.IntentSlot-amount"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}
